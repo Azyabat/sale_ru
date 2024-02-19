@@ -18,7 +18,10 @@
         "baseUrl": "src",
         "noFallthroughCasesInSwitch": true,
         "downlevelIteration": true,
-        "types": ["node"]
+        "types": ["node"],
+        "paths": {
+            "react": ["./node_modules/@types/react"]
+        }
     },
     "include": ["src"]
 }

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { Button, Form, Input } from "antd";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { DefaultLayout } from "layouts/DefaultLayout";
 import { useNavigate } from "react-router-dom";
 import { homePath } from "routes/urls";
@@ -13,6 +12,7 @@ import {
 } from "models/User";
 import { LogInDto } from "api/types";
 import { ErrorLayout } from "layouts/ErrorLayout";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { AuthFormHeader, AuthFormWrapper, ContentWrapper } from "./styled";
 
 import "models/User/init";

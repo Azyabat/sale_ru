@@ -1,3 +1,3 @@
 export const authPath = "/auth";
 
-export const homePath = "/home";
+export const homePath = "/";
