@@ -1,0 +1,67 @@
+{
+    "root": true,
+    "env": {
+        "browser": true,
+        "es2022": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+        "airbnb",
+        "airbnb-typescript",
+        "airbnb/hooks",
+        "plugin:react/jsx-runtime",
+        "prettier"
+    ],
+    "plugins": ["jsx-a11y", "prettier", "@typescript-eslint", "react-hooks"],
+    "rules": {
+        "react/function-component-definition": [
+            2,
+            {
+                "namedComponents": ["function-declaration", "arrow-function"],
+                "unnamedComponents": "arrow-function"
+            }
+        ],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "no-console": "warn",
+        "react/prop-types": "warn",
+        "react/require-default-props": "warn",
+        "react/no-array-index-key": "warn",
+        "react/destructuring-assignment": "warn",
+        "react/jsx-props-no-spreading": "warn",
+        "react/jsx-no-useless-fragment": "warn",
+        "react/no-unstable-nested-components": "warn",
+        "import/prefer-default-export": "off",
+        "import/no-default-export": "warn",
+        "import/no-cycle": "warn",
+        "import/no-extraneous-dependencies": "warn",
+        "import/no-webpack-loader-syntax": "warn",
+        "import/no-unresolved": "warn",
+        "import/no-named-default": "warn",
+        "import/no-named-as-default": "warn",
+        "@typescript-eslint/no-floating-promises": "off"
+    },
+    "overrides": [
+        {
+            "files": ["*.ts", "*.tsx"],
+            "extends": [
+                "plugin:@typescript-eslint/recommended",
+                "plugin:@typescript-eslint/recommended-requiring-type-checking"
+            ],
+            "settings": {
+                "import/resolver": {
+                    "typescript": {
+                        "project": "__dirname"
+                    }
+                }
+            },
+            "parserOptions": {
+                "project": "./tsconfig.json",
+                "sourceType": "module",
+                "ecmaFeatures": {
+                    "jsx": true
+                }
+            }
+        }
+    ]
+}
