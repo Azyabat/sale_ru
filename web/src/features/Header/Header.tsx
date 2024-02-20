@@ -1,7 +1,7 @@
 import { Avatar, Dropdown, Flex, MenuProps } from "antd";
 import { UserOutlined } from "@ant-design/icons";
+import { Text } from "components";
 import { StyledHeader } from "./styled";
-import { Text } from "..";
 
 const menu: MenuProps["items"] = [
     {

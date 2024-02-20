@@ -1,10 +1,13 @@
 import { FC } from "react";
-import { Header } from "components";
-import { Wrapper } from "./styled";
+import { Header, SideMenu } from "features";
+import { Layout } from "./styled";
 
 export const DefaultLayout: FC<React.PropsWithChildren> = ({ children }) => (
     <>
         <Header />
-        <Wrapper>{children}</Wrapper>
+        <Layout>
+            <SideMenu />
+            <Layout.Content>{children}</Layout.Content>
+        </Layout>
     </>
 );
