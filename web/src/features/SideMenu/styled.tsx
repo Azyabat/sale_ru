@@ -17,6 +17,7 @@ export const Menu = styled(AntMenu)`
     .ant-menu-item {
         color: whitesmoke;
         border-radius: 0px;
+        padding: 0px;
     }
 
     .ant-menu-item-selected {

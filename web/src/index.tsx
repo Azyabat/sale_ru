@@ -1,7 +1,8 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
-import { RoutesList } from "routes";
+
 import "antd/dist/reset.css";
+import { RoutesList } from "routes";
 
 const container = document.getElementById("root");
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

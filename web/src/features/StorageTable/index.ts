@@ -1,0 +1,1 @@
+export { StorageTable } from "./StorageTable";

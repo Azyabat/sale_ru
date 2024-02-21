@@ -1,33 +1,49 @@
 import { Button, Flex, MenuProps } from "antd";
 import { useCallback, useState } from "react";
 import { MenuItemType } from "rc-menu/lib/interface";
+import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
+import { homePath, storagePath } from "routes/urls";
+import {
+    AppstoreOutlined,
+    FieldTimeOutlined,
+    HomeOutlined,
+    StockOutlined,
+    TeamOutlined,
+} from "@ant-design/icons";
 import { SiderWrapper, Menu } from "./styled";
 
 const menuItems: MenuProps["items"] = [
     {
-        label: "Личный кабинет",
+        label: <Link to={homePath}>Личный кабинет</Link>,
+        icon: <HomeOutlined />,
         key: "home",
     },
     {
         label: "Аналитика",
+        icon: <StockOutlined />,
         key: "analytics",
     },
     {
-        label: "Склад",
+        label: <Link to={storagePath}>Склад</Link>,
+        icon: <AppstoreOutlined />,
         key: "storage",
     },
     {
         label: "История",
+        icon: <FieldTimeOutlined />,
         key: "history",
     },
     {
         label: "Сотрудники",
+        icon: <TeamOutlined />,
         key: "employers",
     },
 ];
 
 export const SideMenu = () => {
-    const [currentTab, setTab] = useState("home");
+    const { pathname } = useLocation();
+    const [currentTab, setTab] = useState(pathname.slice(1) || "home");
 
     const handleTabClick = useCallback((event: MenuItemType) => {
         setTab(`${event.key}`);
