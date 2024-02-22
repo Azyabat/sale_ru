@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Error } from "./types";
 
-export const baseUrl = "http://localhost:8080";
+export const baseUrl = "http://localhost:3001";
 
 export const get = <Response>(url: string): Promise<Response | Error> =>
     axios

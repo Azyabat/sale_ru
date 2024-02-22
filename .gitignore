@@ -1,3 +1,5 @@
 back/node_modules/
 web/node_modules/
 .DS_Store
+
+back/.env
