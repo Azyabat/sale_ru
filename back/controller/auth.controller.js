@@ -39,7 +39,7 @@ class AuthController {
       res.status(200);
     } catch (e) {
       console.log(e);
-      res.status(400).json({ message: "Registration error" });
+      res.status(400).json({ message: "Ошибка регистрации" });
     }
   }
 
@@ -67,14 +67,8 @@ class AuthController {
       return res.json({ token });
     } catch (error) {
       console.log(error);
-      res.status(400).json({ message: "Login error" });
+      res.status(400).json({ message: "Ошибка авторизации" });
     }
-  }
-
-  async getUsers(req, res) {
-    const result = await db.query('SELECT * FROM "user"');
-
-    return res.json({ result: result.rows });
   }
 }
 

@@ -54,7 +54,7 @@
         "webpack-dev-server": "^4.11.1"
     },
     "scripts": {
-        "start": "webpack serve",
+        "start": "webpack serve --mode development",
         "build": "webpack --mode production",
         "lint": "yarn run eslint ./src --ext .ts,.tsx --fix"
     }

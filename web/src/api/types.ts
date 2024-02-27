@@ -3,7 +3,8 @@ export type LogInDto = {
     password: string;
 };
 
+export type RegistrationDto = LogInDto;
+
 export type Error = {
-    status: number;
     message: string;
 };

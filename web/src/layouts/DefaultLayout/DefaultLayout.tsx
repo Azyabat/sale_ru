@@ -1,17 +1,17 @@
 import { FC } from "react";
 import { Header, SideMenu } from "features";
-import { useLocation } from "react-router";
-import { authPath } from "routes/urls";
+import { useGate } from "effector-react";
+import { ProfileGate } from "models/User";
 import { ContentWrapper, Layout } from "./styled";
 
 export const DefaultLayout: FC<React.PropsWithChildren> = ({ children }) => {
-    const location = useLocation();
-    const isAuthPage = location.pathname === authPath;
+    useGate(ProfileGate);
+
     return (
         <>
-            {!isAuthPage && <Header />}
+            <Header />
             <Layout>
-                {!isAuthPage && <SideMenu />}
+                <SideMenu />
                 <Layout.Content>
                     <ContentWrapper>{children}</ContentWrapper>
                 </Layout.Content>

@@ -22,6 +22,6 @@ export const RoutesList = () => (
                 </DefaultLayout>
             }
         />
-        <Route path="*" element={<Navigate to={authPath} />} />
+        <Route path="*" element={<Navigate to={homePath} />} />
     </Routes>
 );
