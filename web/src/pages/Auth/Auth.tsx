@@ -44,7 +44,7 @@ export const Auth = () => {
                             onFinish={onSuccessFinish}
                         >
                             <Form.Item
-                                name="username"
+                                name="userName"
                                 rules={[
                                     {
                                         required: true,

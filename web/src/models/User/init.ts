@@ -7,12 +7,12 @@ import { $userStore, fetchedUserProfile, fetchUserProfileFx } from ".";
 sample({
     clock: fetchedUserProfile,
     filter(options) {
-        return Boolean(options.password) && Boolean(options.username);
+        return Boolean(options.password) && Boolean(options.userName);
     },
     target: fetchUserProfileFx,
 });
 
-fetchUserProfileFx.use((options) => post("/auth/login", options));
+fetchUserProfileFx.use((options) => post("/auth/registration", options));
 
 sample({
     clock: fetchUserProfileFx.done,

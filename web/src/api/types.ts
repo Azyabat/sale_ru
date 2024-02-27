@@ -1,5 +1,5 @@
 export type LogInDto = {
-    username: string;
+    userName: string;
     password: string;
 };
 
