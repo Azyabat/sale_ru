@@ -36,7 +36,7 @@ class AuthController {
 
       delete newPerson.password;
 
-      res.status(200);
+      res.status(200).json();
     } catch (e) {
       console.log(e);
       res.status(400).json({ message: "Ошибка регистрации" });

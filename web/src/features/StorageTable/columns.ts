@@ -7,8 +7,8 @@ export const columns = [
     },
     {
         title: "Количество",
-        dataIndex: "amount",
-        key: "amount",
+        dataIndex: "count",
+        key: "count",
         render: (amount: number) => `${amount}`,
     },
     {

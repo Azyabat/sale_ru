@@ -19,6 +19,7 @@ export const get = <Response>(url: string): Promise<Response> =>
         .then((response) => response.data)
         .catch(({ response }: { response: AxiosResponse<CustomError> }) => {
             if (response.status === 403) {
+                JWT.logOut();
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 window.location = "/auth";

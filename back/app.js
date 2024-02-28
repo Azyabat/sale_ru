@@ -3,6 +3,7 @@ const cors = require("cors");
 
 const authRouter = require("./routes/Auth");
 const userRouter = require("./routes/User");
+const storageRouter = require("./routes/Storage");
 const middlewares = require("./middlewares");
 
 const app = express();
@@ -16,6 +17,8 @@ app.use(middlewares.logger);
 app.use("/auth", authRouter);
 
 app.use("/user", userRouter);
+
+app.use("/storage", storageRouter);
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);

@@ -1,16 +1,17 @@
 import { Table } from "antd";
+import { useStorage } from "hooks/useStorage";
 import { Wrapper } from "./styled";
 import { columns } from "./columns";
+import { prepareStorageItems } from "./helpers";
 
-const dataMock = [
-    { key: "1", name: "Огурцы", amount: "2", buy: 120, sale: 180 },
-    { key: "2", name: "Помидоры", amount: "6", buy: 100, sale: 280 },
-    { key: "3", name: "Шоколад", amount: "8", buy: 85, sale: 120 },
-    { key: "4", name: "Авокадо", amount: "1", buy: 190, sale: 230 },
-];
+export const StorageTable = () => {
+    const { storageItems, isLoading } = useStorage();
 
-export const StorageTable = () => (
-    <Wrapper>
-        <Table columns={columns} dataSource={dataMock} />
-    </Wrapper>
-);
+    const items = prepareStorageItems(storageItems);
+
+    return (
+        <Wrapper>
+            <Table loading={isLoading} columns={columns} dataSource={items} />
+        </Wrapper>
+    );
+};
