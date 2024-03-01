@@ -11,7 +11,12 @@ export const StorageTable = () => {
 
     return (
         <Wrapper>
-            <Table loading={isLoading} columns={columns} dataSource={items} />
+            <Table
+                loading={isLoading}
+                pagination={{ pageSize: 30 }}
+                columns={columns}
+                dataSource={items}
+            />
         </Wrapper>
     );
 };
