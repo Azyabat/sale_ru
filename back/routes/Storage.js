@@ -11,4 +11,16 @@ router.post(
   StorageController.addProduct
 );
 
+router.post(
+  "/subtract_product",
+  middlewares.checkAuth,
+  StorageController.subtractProduct
+);
+
+router.delete(
+  "/delete",
+  middlewares.checkAuth,
+  StorageController.deleteProduct
+);
+
 module.exports = router;
