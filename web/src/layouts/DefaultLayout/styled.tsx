@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { Layout as AntLayout } from "antd";
 
 export const Layout = styled(AntLayout)`
-    height: 100%;
+    min-height: 100%;
+    height: auto;
     background-color: #e4e4e4;
 `;
 
