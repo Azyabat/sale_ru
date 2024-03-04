@@ -1,3 +1,5 @@
+import { DeleteOutlined } from "@ant-design/icons";
+
 export const columns = [
     {
         title: "Наименование",
@@ -22,5 +24,17 @@ export const columns = [
         dataIndex: "sale",
         key: "sale",
         render: (sale: number) => `${sale}.р`,
+    },
+    {
+        title: "Действия",
+        dataIndex: "key",
+        key: "actions",
+        render: (id: number) => (
+            <DeleteOutlined
+                onClick={() => {
+                    console.log(id);
+                }}
+            />
+        ),
     },
 ];
