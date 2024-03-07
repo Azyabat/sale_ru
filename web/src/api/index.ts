@@ -43,10 +43,5 @@ export const put = <T, Response>(url: string, body: T): Promise<Response> =>
             throw new Error(response.data.message);
         });
 
-export const remove = <Response>(url: string): Promise<Response> =>
-    axios
-        .delete<Response>(`${baseUrl}${url}`)
-        .then((response) => response.data)
-        .catch(({ response }: { response: AxiosResponse<CustomError> }) => {
-            throw new Error(response.data.message);
-        });
+export const remove = <T, Response>(url: string, body?: T): Promise<Response> =>
+    axios.delete(`${baseUrl}${url}`, { data: body });

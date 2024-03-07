@@ -11,3 +11,7 @@ export type StorageGate = {
 };
 
 export type AddStorageItem = Omit<StorageItem, "id">;
+
+export type ActionStorageItem = Pick<StorageItem, "id" | "count">;
+
+export type DeleteStorageItem = Pick<StorageItem, "id">;

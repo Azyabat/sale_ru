@@ -5,7 +5,7 @@ class StorageController {
     const userId = req.user.id;
     try {
       const products = await db.query(
-        `SELECT * FROM "storage" where owner=$1`,
+        `SELECT * FROM "storage" where owner=$1 ORDER BY name`,
         [userId]
       );
 
@@ -27,6 +27,21 @@ class StorageController {
       res.status(200).json();
     } catch (error) {
       res.status(400).json(error);
+    }
+  }
+
+  async augmentProduct(req, res) {
+    const { id, count } = req.body;
+
+    try {
+      await db.query(
+        `UPDATE "storage" SET count = count + ${count} where id=$1`,
+        [id]
+      );
+
+      res.status(200).json();
+    } catch (error) {
+      res.status(200).json({ message: "Не удалось прибавить" });
     }
   }
 

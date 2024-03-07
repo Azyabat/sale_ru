@@ -23,7 +23,6 @@ export const StorageHeader = () => {
                     enterButton="Поиск"
                 />
                 <Space size={16}>
-                    <Button>Списать</Button>
                     <Button type="primary" onClick={handleAdd}>
                         Добавить
                     </Button>

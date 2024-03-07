@@ -23,4 +23,10 @@ router.delete(
   StorageController.deleteProduct
 );
 
+router.post(
+  "/augment_product",
+  middlewares.checkAuth,
+  StorageController.augmentProduct
+);
+
 module.exports = router;
