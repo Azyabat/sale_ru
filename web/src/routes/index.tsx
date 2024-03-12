@@ -1,7 +1,7 @@
-import { Auth, HomePage, StoragePage } from "pages";
+import { Auth, HistoryPage, HomePage, StoragePage } from "pages";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { DefaultLayout } from "layouts/DefaultLayout";
-import { authPath, homePath, storagePath } from "./urls";
+import { authPath, historyPath, homePath, storagePath } from "./urls";
 
 export const RoutesList = () => (
     <Routes>
@@ -19,6 +19,14 @@ export const RoutesList = () => (
             element={
                 <DefaultLayout>
                     <StoragePage />
+                </DefaultLayout>
+            }
+        />
+        <Route
+            path={historyPath}
+            element={
+                <DefaultLayout>
+                    <HistoryPage />
                 </DefaultLayout>
             }
         />

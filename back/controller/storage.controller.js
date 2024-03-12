@@ -92,6 +92,22 @@ class StorageController {
       res.status(400).json({ message: error.message });
     }
   }
+
+  async getTest(req, res) {
+    try {
+      const result = await db
+        .query(
+          `SELECT * FROM public.history
+        JOIN public.storage ON public.history.product_id=public.storage.id
+        JOIN public.user ON public.history.user_owner=public.user.id`
+        )
+        .then((val) => val.rows);
+
+      res.status(200).json(result);
+    } catch (error) {
+      res.status(400).json();
+    }
+  }
 }
 
 module.exports = new StorageController();

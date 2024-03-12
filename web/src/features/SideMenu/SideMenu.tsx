@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import { MenuItemType } from "rc-menu/lib/interface";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
-import { homePath, storagePath } from "routes/urls";
+import { historyPath, homePath, storagePath } from "routes/urls";
 import {
     AppstoreOutlined,
     FieldTimeOutlined,
@@ -30,7 +30,7 @@ const menuItems: MenuProps["items"] = [
         key: "storage",
     },
     {
-        label: "История",
+        label: <Link to={historyPath}>История</Link>,
         icon: <FieldTimeOutlined />,
         key: "history",
     },

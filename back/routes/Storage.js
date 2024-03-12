@@ -29,4 +29,6 @@ router.post(
   StorageController.augmentProduct
 );
 
+router.get("/test", middlewares.checkAuth, StorageController.getTest);
+
 module.exports = router;
