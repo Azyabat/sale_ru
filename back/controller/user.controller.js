@@ -1,15 +1,15 @@
-const db = require("../db");
+const Users = require("../models/users");
+const Storage = require("../models/storage");
 
 class UserController {
   async getProfile(req, res) {
     const userId = req.user.id;
 
     try {
-      const user = (
-        await db.query('SELECT * FROM "user" where id=$1', [userId])
-      ).rows[0];
-
-      delete user.password;
+      const user = await Users.findOne({
+        attributes: ["id", "name"],
+        where: { id: userId },
+      });
 
       res.status(200).json(user);
     } catch (error) {

@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 
+const db = require("./db.js");
 const authRouter = require("./routes/Auth");
 const userRouter = require("./routes/User");
 const storageRouter = require("./routes/Storage");
@@ -19,6 +20,8 @@ app.use("/auth", authRouter);
 app.use("/user", userRouter);
 
 app.use("/storage", storageRouter);
+
+db.authenticate().catch((error) => console.error(error));
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);

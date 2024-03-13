@@ -1,15 +1,18 @@
 const db = require("../db");
+const Storage = require("../models/storage");
+const Users = require("../models/users");
 
 class StorageController {
   async getProducts(req, res) {
     const userId = req.user.id;
     try {
-      const products = await db.query(
-        `SELECT * FROM "storage" where owner=$1 ORDER BY name`,
-        [userId]
-      );
+      const products = await Storage.findAll({
+        include: [{ model: Users, as: "userInfo", attributes: ["name"] }],
+        where: { owner: userId },
+        order: [["name", "ASC"]],
+      });
 
-      res.status(200).json(products.rows);
+      res.status(200).json(products);
     } catch (error) {
       res.status(400);
     }
@@ -19,10 +22,7 @@ class StorageController {
     const userId = req.user.id;
     const { name, count, buy, sale } = req.body;
     try {
-      await db.query(
-        `INSERT INTO "storage" (name, count, buy, sale, owner) values ($1, $2, $3, $4, $5) RETURNING *`,
-        [name, count, buy, sale, userId]
-      );
+      await Storage.create({ name, count, buy, sale, owner: userId });
 
       res.status(200).json();
     } catch (error) {
@@ -34,14 +34,11 @@ class StorageController {
     const { id, count } = req.body;
 
     try {
-      await db.query(
-        `UPDATE "storage" SET count = count + ${count} where id=$1`,
-        [id]
-      );
+      await Storage.increment({ count: +count }, { where: { id: id } });
 
       res.status(200).json();
     } catch (error) {
-      res.status(200).json({ message: "Не удалось прибавить" });
+      res.status(400).json({ message: "Не удалось прибавить" });
     }
   }
 
@@ -49,18 +46,13 @@ class StorageController {
     const { id, count } = req.body;
 
     try {
-      const selectedProduct = await db
-        .query(`SELECT * FROM "storage" where id=$1`, [id])
-        .then((val) => val.rows?.[0]);
+      const selectedProduct = await Storage.findOne({ where: { id: id } });
 
       if (!selectedProduct || selectedProduct.count < count) {
         throw new Error("Некорректное значение count");
       }
 
-      await db.query(
-        `UPDATE "storage" SET count = count - ${count} where id=$1`,
-        [id]
-      );
+      await Storage.decrement("count", { by: count, where: { id: id } });
 
       res.status(200).json();
     } catch (error) {
@@ -73,9 +65,7 @@ class StorageController {
     const { id } = req.body;
 
     try {
-      const selectedProduct = await db
-        .query(`SELECT * FROM "storage" where id=$1`, [id])
-        .then((val) => val.rows?.[0]);
+      const selectedProduct = await Storage.findOne({ where: { id: id } });
 
       if (!selectedProduct) {
         res.status(400).json({ message: "Нет продукта с таким id" });
@@ -85,7 +75,7 @@ class StorageController {
         res.status(400).json({ message: "Не является владельцем продукта" });
       }
 
-      await db.query(`DELETE FROM "storage" where id=$1`, [id]);
+      await Storage.destroy({ where: { id: id } });
 
       res.status(200).json();
     } catch (error) {
