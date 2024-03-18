@@ -1,6 +1,5 @@
-const db = require("../db");
-const Storage = require("../models/storage");
-const Users = require("../models/users");
+import { Users } from "../models/users.js";
+import { Storage } from "../models/storage.js";
 
 class StorageController {
   async getProducts(req, res) {
@@ -82,22 +81,6 @@ class StorageController {
       res.status(400).json({ message: error.message });
     }
   }
-
-  async getTest(req, res) {
-    try {
-      const result = await db
-        .query(
-          `SELECT * FROM public.history
-        JOIN public.storage ON public.history.product_id=public.storage.id
-        JOIN public.user ON public.history.user_owner=public.user.id`
-        )
-        .then((val) => val.rows);
-
-      res.status(200).json(result);
-    } catch (error) {
-      res.status(400).json();
-    }
-  }
 }
 
-module.exports = new StorageController();
+export default new StorageController();

@@ -1,11 +1,11 @@
-const express = require("express");
-const cors = require("cors");
+import express from "express";
+import cors from "cors";
+import { db } from "./db.js";
+import middlewares from "./middlewares.js";
+import storageRouter from "./routes/Storage.js";
 
-const db = require("./db.js");
-const authRouter = require("./routes/Auth");
-const userRouter = require("./routes/User");
-const storageRouter = require("./routes/Storage");
-const middlewares = require("./middlewares");
+import authRouter from "./routes/Auth.js";
+import userRouter from "./routes/User.js";
 
 const app = express();
 const port = process.env.PORT;

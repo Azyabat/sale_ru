@@ -1,5 +1,4 @@
-const Users = require("../models/users");
-const Storage = require("../models/storage");
+import { Users } from "../models/users.js";
 
 class UserController {
   async getProfile(req, res) {
@@ -18,4 +17,4 @@ class UserController {
   }
 }
 
-module.exports = new UserController();
+export default new UserController();

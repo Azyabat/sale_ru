@@ -1,6 +1,6 @@
-const Sequelize = require("sequelize");
+import { Sequelize } from "sequelize";
 
-module.exports = new Sequelize(
+export const db = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
   process.env.DB_PASSWORD,

@@ -1,8 +1,8 @@
-const { DataTypes } = require("sequelize");
-const Users = require("./users");
-const db = require("../db");
+import { DataTypes } from "sequelize";
+import { db } from "../db.js";
+import { Users } from "./users.js";
 
-const Storage = db.define(
+export const Storage = db.define(
   "storage",
   {
     id: {
@@ -24,5 +24,3 @@ const Storage = db.define(
 );
 
 Storage.hasOne(Users, { foreignKey: "id", sourceKey: "owner", as: "userInfo" });
-
-module.exports = Storage;

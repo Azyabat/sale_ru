@@ -1,7 +1,8 @@
-const express = require("express");
-const router = express.Router();
-const StorageController = require("../controller/storage.controller");
-const middlewares = require("../middlewares");
+import { Router } from "express";
+import StorageController from "../controller/storage.controller.js";
+import middlewares from "../middlewares.js";
+
+const router = Router();
 
 router.get("/", middlewares.checkAuth, StorageController.getProducts);
 
@@ -29,6 +30,4 @@ router.post(
   StorageController.augmentProduct
 );
 
-router.get("/test", middlewares.checkAuth, StorageController.getTest);
-
-module.exports = router;
+export default router;

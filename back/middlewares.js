@@ -1,7 +1,7 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
-module.exports = {
-  logger: (request, _, next) => {
+class Middlewares {
+  logger(request, _, next) {
     const now = new Date();
     const hour = now.getHours();
     const minutes = now.getMinutes();
@@ -11,8 +11,9 @@ module.exports = {
     } ${request.get("user-agent")}`;
     console.log(data);
     next();
-  },
-  checkAuth: (req, res, next) => {
+  }
+
+  checkAuth(req, res, next) {
     try {
       const token = req.headers.authorization.split(" ")[1];
 
@@ -30,5 +31,7 @@ module.exports = {
 
       return res.status(403).json({ message: "Пользователь не авторизован" });
     }
-  },
-};
+  }
+}
+
+export default new Middlewares();
