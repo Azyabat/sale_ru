@@ -7,7 +7,6 @@ export const db = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: "postgres",
-    operatorsAliases: 0,
     define: { freezeTableName: true },
     pool: {
       max: 5,

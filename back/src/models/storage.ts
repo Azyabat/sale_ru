@@ -1,8 +1,22 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model, Optional } from "sequelize";
 import { db } from "../db.js";
 import { Users } from "./users.js";
 
-export const Storage = db.define(
+type StorageAttributes = {
+  id: number;
+  name: string;
+  count: number;
+  buy: number;
+  sale: number;
+  owner: number;
+};
+
+type StorageCreationAttributes = Optional<StorageAttributes, "id">;
+
+interface StorageModel
+  extends Model<StorageAttributes, StorageCreationAttributes> {}
+
+export const Storage = db.define<StorageModel>(
   "storage",
   {
     id: {

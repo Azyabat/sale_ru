@@ -47,7 +47,7 @@ class StorageController {
     try {
       const selectedProduct = await Storage.findOne({ where: { id: id } });
 
-      if (!selectedProduct || selectedProduct.count < count) {
+      if (!selectedProduct || selectedProduct.dataValues.count < count) {
         throw new Error("Некорректное значение count");
       }
 
@@ -70,7 +70,7 @@ class StorageController {
         res.status(400).json({ message: "Нет продукта с таким id" });
       }
 
-      if (selectedProduct.owner !== userId) {
+      if (selectedProduct.dataValues.owner !== userId) {
         res.status(400).json({ message: "Не является владельцем продукта" });
       }
 

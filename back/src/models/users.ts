@@ -1,7 +1,17 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model, Optional } from "sequelize";
 import { db } from "../db.js";
 
-export const Users = db.define(
+type UserAttributes = {
+  id: number;
+  name: string;
+  password: string;
+};
+
+type UserCreationAttributes = Optional<UserAttributes, "id">;
+
+interface UserModel extends Model<UserAttributes, UserCreationAttributes> {}
+
+export const Users = db.define<UserModel>(
   "user",
   {
     id: {

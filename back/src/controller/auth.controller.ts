@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { Users } from "../models/users.js";
+import { Request } from "express";
 
 const generateAccessToken = (id, userName) => {
   const payload = {
@@ -48,13 +49,19 @@ class AuthController {
           .json({ message: `Пользователь ${userName} не найден` });
       }
 
-      const validPassword = bcrypt.compareSync(password, user.password);
+      const validPassword = bcrypt.compareSync(
+        password,
+        user.dataValues.password
+      );
 
       if (!validPassword) {
         return res.status(400).json({ message: `Введен неверный пароль` });
       }
 
-      const token = generateAccessToken(user.id, user.userName);
+      const token = generateAccessToken(
+        user.dataValues.id,
+        user.dataValues.name
+      );
 
       return res.json({ token });
     } catch (error) {
