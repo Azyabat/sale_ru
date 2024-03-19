@@ -72,7 +72,7 @@ class StorageController {
 
   async subtractProduct(req, res) {
     const userId = req.user.id;
-    const { id, count } = req.body;
+    const { id, count, discard } = req.body;
 
     try {
       const selectedProduct = await Storage.findOne({ where: { id: id } });
@@ -90,9 +90,11 @@ class StorageController {
         product_id: id,
         count: updatedProduct.count,
         amount: count,
-        operation_type: HistoryOperationType.SALE,
+        operation_type: discard
+          ? HistoryOperationType.DISCARD
+          : HistoryOperationType.SALE,
         user_owner: userId,
-        price: updatedProduct.sale,
+        price: discard ? updatedProduct.buy : updatedProduct.sale,
       });
 
       res.status(200).json();

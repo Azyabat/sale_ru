@@ -9,6 +9,8 @@ export const getHistoryOperationName = (operation: HistoryOperationsType) => {
             break;
 
         case HistoryOperationsType.DISCARD:
+            result = "Списание";
+            break;
         case HistoryOperationsType.SALE:
             result = "Продажа";
             break;

@@ -20,6 +20,6 @@ export type HistoryItem = {
 
 export const HistoryOperationsColor = {
     [HistoryOperationsType.BUY]: "red",
-    [HistoryOperationsType.DISCARD]: "pink",
+    [HistoryOperationsType.DISCARD]: "red",
     [HistoryOperationsType.SALE]: "green",
 };

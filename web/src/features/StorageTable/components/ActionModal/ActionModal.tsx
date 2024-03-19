@@ -44,7 +44,7 @@ export const ActionModal: FC<ModalProps> = ({
             form.validateFields()
                 .then(() => {
                     if (isMinus) {
-                        minusProduct({ id: key, count: formCount });
+                        minusProduct({ id: key, count: formCount, discard: true });
                     } else {
                         augmentProduct({ id: key, count: formCount });
                     }
