@@ -12,6 +12,7 @@ type HistoryAttributes = {
   amount: number;
   createdAt: string;
   operation_type: HistoryOperationType;
+  price: number;
 };
 
 type HistoryCreationAttributes = Optional<
@@ -49,6 +50,10 @@ export const History = db.define<HistoryModel>(
     },
     operation_type: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    price: {
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
     createdAt: {

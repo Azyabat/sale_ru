@@ -1,13 +1,13 @@
 import { Table } from "antd";
-import { useStorage } from "hooks/useStorage";
+import { useHistory } from "hooks/useHistory";
 import { addTableDataKey } from "helpers/addTableDataKey";
 import { Wrapper } from "./styled";
 import { columns } from "./columns";
 
-export const StorageTable = () => {
-    const { storageItems, isLoading } = useStorage();
+export const HistoryTable = () => {
+    const { history, isLoading } = useHistory();
 
-    const items = addTableDataKey(storageItems);
+    const data = addTableDataKey(history);
 
     return (
         <Wrapper>
@@ -15,7 +15,7 @@ export const StorageTable = () => {
                 loading={isLoading}
                 pagination={{ pageSize: 30 }}
                 columns={columns}
-                dataSource={items}
+                dataSource={data}
             />
         </Wrapper>
     );

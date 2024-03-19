@@ -12,6 +12,15 @@ class HistoryController {
           { model: Storage, attributes: ["name"], as: "product" },
         ],
         where: { user_owner: userId },
+        attributes: [
+          "amount",
+          "count",
+          "createdAt",
+          "id",
+          "operation_type",
+          "price",
+        ],
+        order: [["createdAt", "DESC"]],
       });
       res.status(200).json(result);
     } catch (error) {

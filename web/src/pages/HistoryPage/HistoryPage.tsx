@@ -1,5 +1,9 @@
-export const HistoryPage = () => {
-    const a = "";
+import { useGate } from "effector-react";
+import { HistoryTable } from "features";
+import { HistoryGate } from "models/History";
 
-    return <span>Hello history page</span>;
+export const HistoryPage = () => {
+    useGate(HistoryGate);
+
+    return <HistoryTable />;
 };

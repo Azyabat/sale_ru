@@ -35,6 +35,7 @@ class StorageController {
         amount: count,
         operation_type: HistoryOperationType.BUY,
         user_owner: userId,
+        price: product.dataValues.buy,
       });
 
       res.status(200).json();
@@ -59,6 +60,7 @@ class StorageController {
         amount: count,
         operation_type: HistoryOperationType.BUY,
         user_owner: userId,
+        price: updatedProduct.buy,
       });
 
       res.status(200).json();
@@ -90,6 +92,7 @@ class StorageController {
         amount: count,
         operation_type: HistoryOperationType.SALE,
         user_owner: userId,
+        price: updatedProduct.sale,
       });
 
       res.status(200).json();
