@@ -1,6 +1,5 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import { db } from "../db.js";
-import { Users } from "./users.js";
 
 type StorageAttributes = {
   id: number;
@@ -36,5 +35,3 @@ export const Storage = db.define<StorageModel>(
   },
   { timestamps: false }
 );
-
-Storage.hasOne(Users, { foreignKey: "id", sourceKey: "owner", as: "userInfo" });

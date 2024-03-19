@@ -1,7 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { Users } from "../models/users.js";
-import { Request } from "express";
 
 const generateAccessToken = (id, userName) => {
   const payload = {

@@ -6,6 +6,7 @@ import storageRouter from "./routes/Storage.js";
 
 import authRouter from "./routes/Auth.js";
 import userRouter from "./routes/User.js";
+import historyRouter from "./routes/History.js";
 
 const app = express();
 const port = process.env.PORT;
@@ -20,6 +21,8 @@ app.use("/auth", authRouter);
 app.use("/user", userRouter);
 
 app.use("/storage", storageRouter);
+
+app.use("/history", historyRouter);
 
 db.authenticate().catch((error) => console.error(error));
 

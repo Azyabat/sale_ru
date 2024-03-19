@@ -1,4 +1,5 @@
-import { Users } from "../models/users.js";
+import { HistoryOperationType } from "../consts/history.js";
+import { History } from "../models/history.js";
 import { Storage } from "../models/storage.js";
 
 class StorageController {
@@ -6,7 +7,6 @@ class StorageController {
     const userId = req.user.id;
     try {
       const products = await Storage.findAll({
-        include: [{ model: Users, as: "userInfo", attributes: ["name"] }],
         where: { owner: userId },
         order: [["name", "ASC"]],
       });
@@ -21,7 +21,21 @@ class StorageController {
     const userId = req.user.id;
     const { name, count, buy, sale } = req.body;
     try {
-      await Storage.create({ name, count, buy, sale, owner: userId });
+      const product = await Storage.create({
+        name,
+        count,
+        buy,
+        sale,
+        owner: userId,
+      });
+
+      await History.create({
+        product_id: product.dataValues.id,
+        count: count,
+        amount: count,
+        operation_type: HistoryOperationType.BUY,
+        user_owner: userId,
+      });
 
       res.status(200).json();
     } catch (error) {
@@ -30,18 +44,32 @@ class StorageController {
   }
 
   async augmentProduct(req, res) {
+    const userId = req.user.id;
     const { id, count } = req.body;
 
     try {
-      await Storage.increment({ count: +count }, { where: { id: id } });
+      const updatedProduct = await Storage.increment(
+        { count: +count },
+        { where: { id: id } }
+      ).then((value) => value[0][0][0]);
+
+      await History.create({
+        product_id: id,
+        count: updatedProduct.count,
+        amount: count,
+        operation_type: HistoryOperationType.BUY,
+        user_owner: userId,
+      });
 
       res.status(200).json();
     } catch (error) {
+      console.log(error);
       res.status(400).json({ message: "Не удалось прибавить" });
     }
   }
 
   async subtractProduct(req, res) {
+    const userId = req.user.id;
     const { id, count } = req.body;
 
     try {
@@ -51,10 +79,22 @@ class StorageController {
         throw new Error("Некорректное значение count");
       }
 
-      await Storage.decrement("count", { by: count, where: { id: id } });
+      const updatedProduct = await Storage.decrement("count", {
+        by: count,
+        where: { id: id },
+      }).then((value) => value[0][0][0]);
+
+      await History.create({
+        product_id: id,
+        count: updatedProduct.count,
+        amount: count,
+        operation_type: HistoryOperationType.SALE,
+        user_owner: userId,
+      });
 
       res.status(200).json();
     } catch (error) {
+      console.log(error);
       res.status(400).json({ message: error.message });
     }
   }
