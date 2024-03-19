@@ -5,6 +5,7 @@ import {
     addedNewStorageItem,
     augmentStorageItem,
     deleteStorageItem,
+    fetchedStorageItems,
     minusStorageItem,
 } from "models/Storage";
 
@@ -15,6 +16,7 @@ export const useStorage = () => {
     const minusProduct = useUnit(minusStorageItem);
     const augmentProduct = useUnit(augmentStorageItem);
     const deleteProduct = useUnit(deleteStorageItem);
+    const fetch = useUnit(fetchedStorageItems);
 
     return {
         storageItems,
@@ -23,5 +25,6 @@ export const useStorage = () => {
         minusProduct,
         augmentProduct,
         deleteProduct,
+        fetch,
     };
 };
