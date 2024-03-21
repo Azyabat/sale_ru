@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import { MenuItemType } from "rc-menu/lib/interface";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
-import { historyPath, homePath, storagePath } from "routes/urls";
+import { analyticsPath, historyPath, homePath, storagePath } from "routes/urls";
 import {
     AppstoreOutlined,
     FieldTimeOutlined,
@@ -20,7 +20,7 @@ const menuItems: MenuProps["items"] = [
         key: "home",
     },
     {
-        label: "Аналитика",
+        label: <Link to={analyticsPath}>Аналитика</Link>,
         icon: <StockOutlined />,
         key: "analytics",
     },

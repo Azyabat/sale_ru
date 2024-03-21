@@ -1,7 +1,13 @@
-import { Auth, HistoryPage, HomePage, StoragePage } from "pages";
+import { AnalyticsPage, Auth, HistoryPage, HomePage, StoragePage } from "pages";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { DefaultLayout } from "layouts/DefaultLayout";
-import { authPath, historyPath, homePath, storagePath } from "./urls";
+import {
+    analyticsPath,
+    authPath,
+    historyPath,
+    homePath,
+    storagePath,
+} from "./urls";
 
 export const RoutesList = () => (
     <Routes>
@@ -27,6 +33,14 @@ export const RoutesList = () => (
             element={
                 <DefaultLayout>
                     <HistoryPage />
+                </DefaultLayout>
+            }
+        />
+        <Route
+            path={analyticsPath}
+            element={
+                <DefaultLayout>
+                    <AnalyticsPage />
                 </DefaultLayout>
             }
         />
